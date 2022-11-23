@@ -46,7 +46,6 @@ jobs:
     if:
       contains('
         refs/heads/master
-        refs/heads/main
         ', github.ref)
     steps:
       - name: executing remote ssh commands to deploy
@@ -70,6 +69,10 @@ jobs:
   send_message:
     runs-on: ubuntu-latest
     needs: deploy
+    if:
+      contains('
+        refs/heads/master
+        ', github.ref)
     steps:
     - name: send message to TG
       uses: appleboy/telegram-action@master
